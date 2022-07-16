@@ -9,26 +9,28 @@ let answerA = document.querySelector("#answerA");
 let answerB = document.querySelector("#answerB");
 let answerC = document.querySelector("#answerC");
 let answerD = document.querySelector("#answerD");
+let total = document.querySelector("#total")
 let iterationNumber = 0;
 let qnChoice = "";
 let score = 0;
 
 let questionList = [
-    "Qn1: In which NZ city is the sky tower?",
+    "Qn1: This attribute can be used under the declaration of the <body> tag if you want to change the color of all the hyperlinks in the webpage",
     "Qn2: Which is the closest planet to the sun?",
     "Qn3: What is a baby goat called?"
 ]
 
-let aAnswer = ["Dunedin", "Venus", "Tadpole"]
-let bAnswer = ["Christchurch", "Mercury", "Joey"]
-let cAnswer = ["Dunedin", "Jupiter", "Kid"]
-let dAnswer = ["Auckland", "Earth", "Chick"]
+let aAnswer = ["Text", "Venus", "Tadpole"]
+let bAnswer = ["Background", "Mercury", "Joey"]
+let cAnswer = ["Bgcolor", "Jupiter", "Kid"]
+let dAnswer = ["Link", "Earth", "Chick"]
 
 
 quiz.style.display = "none";
 qn1Button.style.display = "none";
 qn2Button.style.display = "none";
 qn3Button.style.display = "none";
+total.style.display = "none";
 
 function reset() {
     answerA.style.backgroundColor = "rgb(62, 166, 201)";
@@ -119,8 +121,14 @@ function submitQn3() {
         score += 1;
     }
     iterationNumber += 1;
-    headerText.innerHTML = "You Scored " + score;
+    // total.innerHTML = "Your Scored " + score + " / 5";
+    totalScore();
     quiz.style.display = "none";
+    total.style.display = "block";
 
     reset();
+}
+
+function totalScore() {
+    total.innerHTML = "Your Scored " + score + " / 5";
 }

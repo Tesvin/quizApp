@@ -168,7 +168,15 @@ body {
 }
 
 #headerText {
-    color: lightblue;
+    padding-top: 1px;
 }
+
+#total {
+    color: black;
+    padding: 200px 300px;
+    font-size: 25px;
+}
+
+
 
 
