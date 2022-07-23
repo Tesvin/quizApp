@@ -1,3 +1,4 @@
+// select all elements
 let userName = document.querySelector("#userName");
 let headerText = document.querySelector("#headerText");
 let greetingInput = document.querySelector("#greetingInput");
@@ -9,21 +10,24 @@ let answerA = document.querySelector("#answerA");
 let answerB = document.querySelector("#answerB");
 let answerC = document.querySelector("#answerC");
 let answerD = document.querySelector("#answerD");
-let total = document.querySelector("#total")
+let total = document.querySelector("#total");
+let timer = document.getElementById("timer");
 let iterationNumber = 0;
 let qnChoice = "";
 let score = 0;
 
+// create question
 let questionList = [
-    "Qn1: This attribute can be used under the declaration of the <body> tag if you want to change the color of all the hyperlinks in the webpage",
-    "Qn2: Which is the closest planet to the sun?",
-    "Qn3: What is a baby goat called?"
+    "Qn1: Inside which HTML element do we put the JavaScript?",
+    "Qn2: Where is the correct place to insert a JavaScript?",
+    "Qn3: What is the correct syntax for referring to an external script called xxx.js?"
 ]
 
-let aAnswer = ["Text", "Venus", "Tadpole"]
-let bAnswer = ["Background", "Mercury", "Joey"]
-let cAnswer = ["Bgcolor", "Jupiter", "Kid"]
-let dAnswer = ["Link", "Earth", "Chick"]
+// create options
+let aAnswer = ["scripting tag", "The head tag sction", "script href='xxx.js'"]
+let bAnswer = ["javascript tag", "the body tag section", "script source='xxx.js'"]
+let cAnswer = ["js tag", "The link section tag", "script src='xxx.js'"]
+let dAnswer = ["script tag", "the title section tag", "script name='xxx.js"]
 
 
 quiz.style.display = "none";
@@ -31,7 +35,10 @@ qn1Button.style.display = "none";
 qn2Button.style.display = "none";
 qn3Button.style.display = "none";
 total.style.display = "none";
+timer.style.display = "none";
 
+// A reset function which gives the options default color 
+//and iterates the questions and options
 function reset() {
     answerA.style.backgroundColor = "rgb(62, 166, 201)";
     answerB.style.backgroundColor = "rgb(62, 166, 201)";
@@ -55,7 +62,9 @@ function greeting() {
     answerA.innerHTML = aAnswer[iterationNumber];
     answerB.innerHTML = bAnswer[iterationNumber];
     answerC.innerHTML = cAnswer[iterationNumber];
-    answerD.innerHTML = dAnswer[iterationNumber];            
+    answerD.innerHTML = dAnswer[iterationNumber]; 
+    timer.style.display = "block";
+    startCountdown();
 }
 
 function afunction() {
@@ -130,5 +139,33 @@ function submitQn3() {
 }
 
 function totalScore() {
-    total.innerHTML = "Your Scored " + score + " / 5";
+    let quizTotal = `
+    <p>Quiz Completed<p>
+    <p>You Scored: ${score} of 3<p>
+    <div class="quiz-repeat">
+        <a href="index.html">Take Quiz Again</a>
+    </div>
+    `
+
+    total.innerHTML = quizTotal
+}
+
+
+// Add a timer
+let time = 0.53;
+let quizTimeInMinutes = time * 60 * 60;
+let quizTime = quizTimeInMinutes / 60;
+
+function startCountdown() {
+    let quizTimer = setInterval(function() {
+        if(quizTime <= 0) {
+            clearInterval(quizTimer)
+            submitQn3();
+        } else {
+            quizTime--;
+            let sec = Math.floor(quizTime % 60);
+            let min = Math.floor(quizTime / 60) % 60;
+            timer.innerHTML = `TIME: ${min} : ${sec}`;
+        }
+    }, 1000);
 }

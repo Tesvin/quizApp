@@ -151,6 +151,10 @@ body {
     color: white;
 }
 
+#timer {
+    padding: 20px;
+}
+
 
 .next1:hover {
     transform: translate(2px, 2px);
@@ -175,6 +179,12 @@ body {
     color: black;
     padding: 200px 300px;
     font-size: 25px;
+}
+
+#timer {
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 
